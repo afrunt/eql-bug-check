@@ -28,6 +28,9 @@ class EqlBugCheckApplicationTests {
 
 		entityManagerFactory.createEntityManager().createQuery("select f from FooEntity f where upper(f.name) IN ('Y', 'Basic', 'Remit')")
 				.getResultList();
+
+		entityManagerFactory.createEntityManager().createQuery("select count(f) from FooEntity f where f.status IN (com.example.eql_bug_check.entity.FooStatus.FOO, com.example.eql_bug_check.entity.FooStatus.BAR)")
+				.getResultList();
 	}
 
 }
