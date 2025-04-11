@@ -15,6 +15,6 @@ public interface FooRepository extends JpaRepository<FooEntity, Long> {
     @Query("select f from FooEntity f where f.size IN :sizes AND f.size > 10")
     List<FooEntity> findBySizeIn(@Param("sizes") List<Integer> sizes);
 
-    //@Query("select f from FooEntity f where upper(f.name) IN ('Y', 'Basic', 'Remit')")
-    //List<FooEntity> findByNameInConstantArray();
+    @Query("select f from FooEntity f where upper(f.name) IN ('Y', 'Basic', 'Remit')")
+    List<FooEntity> findByNameInConstantArray();
 }
