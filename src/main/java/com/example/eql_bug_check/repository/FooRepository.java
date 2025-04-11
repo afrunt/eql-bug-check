@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface FooRepository extends JpaRepository<FooEntity, Long> {
-    //@Query("select f from FooEntity f where f.name IN :names")
+
     @Query("select f from FooEntity f where upper(f.name) IN :names")
     List<FooEntity> findByNameIn(@Param("names") List<String> names);
 
