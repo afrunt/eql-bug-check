@@ -11,6 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>eql-bug-check</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>eql-bug-check</name>
     <description>Demo project for Spring Boot</description>
     <url/>
@@ -20,6 +21,12 @@
     <developers>
         <developer/>
     </developers>
+    <modules>
+        <module>jpa-dependencies</module>
+        <module>eql</module>
+        <module>hql</module>
+        <module>app</module>
+    </modules>
     <scm>
         <connection/>
         <developerConnection/>
@@ -47,81 +54,24 @@
                 <artifactId>eclipselink</artifactId>
                 <version>4.0.5</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>jpa-dependencies</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>eql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>hql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <profiles>
-        <profile>
-            <id>eql</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-jpa</artifactId>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.hibernate.orm</groupId>
-                            <artifactId>hibernate-core</artifactId>
-                        </exclusion>
-                        <exclusion>
-                            <groupId>org.hibernate.orm</groupId>
-                            <artifactId>hibernate-entitymanager</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-
-
-            </dependencies>
-        </profile>
-        <profile>
-            <id>hql</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-jpa</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
     <repositories>
         <repository>

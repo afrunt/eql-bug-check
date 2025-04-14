@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories(basePackages = {"com.example.eql_bug_check.repository"})
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.example"})
 public class EqlBugCheckApplication {
 
     public static void main(String[] args) {
