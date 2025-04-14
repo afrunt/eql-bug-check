@@ -33,12 +33,23 @@ class EqlBugCheckApplicationTests {
                 .getResultList();
 
         entityManagerFactory.createEntityManager().createQuery("select count(f) from FooEntity f where f.status IN (com.example.eql_bug_check.entity.FooStatus.FOO, com.example.eql_bug_check.entity.FooStatus.BAR)")
+                .getSingleResult();
+
+        Object singleResult = entityManagerFactory.createEntityManager().createQuery(
+                        """
+                                SELECT COUNT(f)
+                                FROM FooEntity f
+                                WHERE f.id = 1
+                                HAVING COUNT(f) > 0
+                                """)
                 .getResultList();
+
 
         assertNotNull(fooRepository.findByNameIn(List.of("foo", "bar")));
         assertNotNull(fooRepository.findBySizeIn(List.of(1, 2)));
         assertNotNull(fooRepository.findByNameInConstantArray());
         assertEquals(0, fooRepository.findCountByStatusIn());
+        fooRepository.findHavingWithoutGroupBy();
     }
 
 }

@@ -20,4 +20,13 @@ public interface FooRepository extends JpaRepository<FooEntity, Long> {
 
     @Query("select count(f) from FooEntity f where f.status IN (com.example.eql_bug_check.entity.FooStatus.FOO, com.example.eql_bug_check.entity.FooStatus.BAR)")
     int findCountByStatusIn();
+
+    @Query("""
+            SELECT COUNT(f)
+            FROM FooEntity f
+            WHERE f.name IN ('Y', 'Basic', 'Remit') 
+                        AND f.size = 10
+            HAVING COUNT(f) > 0
+            """)
+    Integer findHavingWithoutGroupBy();
 }
